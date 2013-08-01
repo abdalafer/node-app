@@ -11,8 +11,8 @@ server = http.createServer(function(req, res){
            res.writeHead(200, {'Content-Type': 'text/html'});
            res.write('<h1>Hello! Try the <a href="/test.html">Test page</a></h1>');
            res.end();
-           break;
-       case '/test.html':
+           break;  
+       case '/weather.html':
            fs.readFile(__dirname + path, function(err, data){
                if (err){ 
                    return send404(res);
@@ -45,6 +45,11 @@ io.sockets.on('connection', function(socket){
    //send data to client
    setInterval(function(){
        socket.emit('date', {'date': new Date()});
+   }, 1000);
+   
+   //send image url
+   setInterval(function(){
+       socket.emit('radar-image', {'url': 'http://radar.weather.gov/ridge/RadarImg/N0R/AMX_N0R_0.gif'});
    }, 1000);
 
    //recieve client data
