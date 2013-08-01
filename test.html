@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+ <head>
+   <title>Socket.io Test</title>
+   <script src="/socket.io/socket.io.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+ </head>
+ <body>
+   <script>    
+     var socket = io.connect();
+
+     socket.on('date', function(data){
+       $('#date').text(data.date);
+     });
+
+	  socket.on('chat', function(message){
+	  	$("#text").append('\n'+message.message);
+	  });	
+		
+     $(document).ready(function(){
+     	
+     	$('#button').on('click', function(){
+     		socket.emit("chat", $("#message-input").val());
+     	});
+     	
+     	
+
+       $('#text').keypress(function(e){
+         socket.emit('server_data', {'letter': String.fromCharCode(e.charCode)});
+       });
+     });
+   </script>
+   <div id="date"></div>
+   <textarea id="text" style="height:300px;"></textarea>
+   <br/>
+   <input type='text' id='message-input' />
+   <a href="#" id="button">Send Data</a>
+ </body>
+</html>
