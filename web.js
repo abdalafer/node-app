@@ -48,9 +48,12 @@ io.sockets.on('connection', function(socket){
    }, 1000);
    
    //send image url
+   	
+   socket.emit('radar-image', {'url': 'http://radar.weather.gov/ridge/RadarImg/N0R/AMX_N0R_0.gif?p' + new Date().getTime() });
+   
    setInterval(function(){
-       socket.emit('radar-image', {'url': 'http://radar.weather.gov/ridge/RadarImg/N0R/AMX_N0R_0.gif'});
-   }, 1000);
+       socket.emit('radar-image', {'url': 'http://radar.weather.gov/ridge/RadarImg/N0R/AMX_N0R_0.gif?p' + new Date().getTime()});
+   }, 300000);
 
    //recieve client data
    socket.on("chat", function(message) {
