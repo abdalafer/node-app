@@ -32,7 +32,7 @@ send404 = function(res){
    res.end();
 };
 
-server.listen(8001);
+server.listen(process.env.PORT || 5000);
 
 // use socket.io
 var io = require('socket.io').listen(server);
