@@ -10,7 +10,6 @@
      var socket = io.connect();
 
      socket.on('radar-image', function(data){
-       //$('#date').text(data.url);
        $('.radar-image').css('background-image', "url(" + data.url + ")");
      });
 

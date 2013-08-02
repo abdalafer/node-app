@@ -42,11 +42,8 @@ io.set('log level', 1);
 
 // define interactions with client
 io.sockets.on('connection', function(socket){
-   //send data to client
-   setInterval(function(){
-       socket.emit('date', {'date': new Date()});
-   }, 1000);
    
+   //send data to client 
    //send image url
    	
    socket.emit('radar-image', {'url': 'http://radar.weather.gov/ridge/RadarImg/N0R/AMX_N0R_0.gif?p' + new Date().getTime() });
@@ -54,11 +51,5 @@ io.sockets.on('connection', function(socket){
    setInterval(function(){
        socket.emit('radar-image', {'url': 'http://radar.weather.gov/ridge/RadarImg/N0R/AMX_N0R_0.gif?p' + new Date().getTime()});
    }, 300000);
-
-   //recieve client data
-   socket.on("chat", function(message) {
-           io.sockets.emit("chat", {message: message});
-   });
-
 
 });
