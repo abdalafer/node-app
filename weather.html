@@ -4,18 +4,38 @@
    <title>Miami Radar</title>
    <script src="/socket.io/socket.io.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+   <script src="/pixastic.custom.js"></script>
+   
  </head>
- <body style="background-image:url(https://lh5.googleusercontent.com/-AXurFMOq74U/UfnLI7eJ8oI/AAAAAAAACQA/aicPXBuQSd0/w600-h550-no/map.png); background-repeat:no-repeat; margin:0px;">
+ <body style="background-image:url(http://radar.weather.gov/ridge/Overlays/Topo/Short/AMX_Topo_Short.jpg); background-repeat:no-repeat; margin:0px;">
    <script>    
      var socket = io.connect();
 
+     /*
      socket.on('radar-image', function(data){
        $('.radar-image').css('background-image', "url(" + data.url + ")");
+       $('.radar-image').attr('src', data.url  );
+     });
+     */
+     
+     
+     socket.on('radar-image-file', function(data){
+       //alert(data);
+       $('#radar-image-img').attr('src', data.file );
      });
 
    </script>
    
-   <div class="radar-image" style="width: 600px; height:550px;">
+    <!-- <div class="radar-image" style="width: 600px; height:550px;"></div> -->
+	<img src='' id="radar-image-img" class="radar-image" style="width: 600px; height:550px;" />
+	
+	
+	<script type="text/javascript">
 
+		$("#radar-image-img").load(function(){
+			$(this).pixastic("blurfast", {amount:0.1});
+		});
+	</script>
+	
  </body>
 </html>
