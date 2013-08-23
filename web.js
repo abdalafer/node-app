@@ -86,7 +86,7 @@ io.sockets.on('connection', function(socket){
  		 response.pipe(file);
 		socket.emit('radar-image-file', {'file': "radar.gif" });
 		});
-		}, 5000);
+		}, 10000);
 		
 		
 		/*
