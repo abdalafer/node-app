@@ -75,7 +75,7 @@ io.sockets.on('connection', function(socket){
    */
    
  		//get emit initial image for when page is loaded
- 		socket.emit('radar-image-file', {'file': "radar.gif" });
+ 		socket.emit('radar-image-file', {'file': "http://www.abdalafer.com/radar.php" });
  		
 		//gets file from noaa's url then saves it locally to then send/emmit it
    	    setInterval(function(){
